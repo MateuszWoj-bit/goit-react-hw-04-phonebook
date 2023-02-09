@@ -1,3 +1,3 @@
-# goit-react-hw-03-phonebook
+# goit-react-hw-04-phonebook
  
 https://mateuszwoj-bit.github.io/goit-react-hw-02-phonebook/
