@@ -12,6 +12,10 @@ export const App = () => {
     number: '',
   });
 
+  function contactsStorageSetter(contact) {
+    localStorage.setItem('contacts', JSON.stringify(contact));
+  }
+
   useEffect(() => {
     const contactsSave = JSON.parse(localStorage.getItem('contacts'));
     console.log(contactsSave);
@@ -22,6 +26,8 @@ export const App = () => {
         }));
       }
   }, []);
+
+  
   
   const handleChange = e => {
     const { name, value } = e.target;
@@ -41,10 +47,7 @@ export const App = () => {
       alert(`${state.name} is already in contacts`);
       return;
     }
-    localStorage.setItem(
-      'contacts',
-      JSON.stringify([...state.contacts, newContact])
-    );
+    contactsStorageSetter([...state.contacts, newContact]);    
     setState(prevState => ({
       ...prevState, contacts: [...state.contacts, newContact] }));
     e.target.reset();
@@ -54,7 +57,8 @@ export const App = () => {
     const filteredContacts = state.contacts.filter(
       contact => contact.id !== id
     );
-    localStorage.setItem('contacts', JSON.stringify(filteredContacts));
+   contactsStorageSetter(filteredContacts);
+    
     setState(prevState => ({
       ...prevState, contacts: filteredContacts }));
   };
